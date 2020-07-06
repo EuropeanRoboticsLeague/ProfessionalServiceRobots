@@ -1,0 +1,62 @@
+%!TEX root = ./RoCKIn-D-2.1.2.tex
+
+
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\section{The @Work Testbed Implementation Details}
+\label{ssec:AppendixAtWorktestbed}
+
+
+\begin{figure}[!htbp]
+  \begin{center}
+  	  \scalebox{1.0}[1.0]{%
+  		  \includegraphics[width=140mm,angle=0, trim=0px 0px 0px 0px,clip]%
+	  		{./fig/WorkArenaBRSU.jpg}%
+			}%
+	   	\caption{\roaw testbed at Bonn-Rhein-Sieg University.}
+  	\label{fig:AppendixBRSUArena} 
+  \end{center}
+\end{figure}
+
+Based on the general design and specifications of the \roaw test bed detailed previously in this text, this section presents the design specifications for the elements of the \roaw testbed and its installation in Bonn-Rhein-Sieg University, Germany (Figures \ref{fig:AppendixBRSUArena}). 
+The \roaw test bed is designed to be flexible and adaptable in different events.
+Therefore, the \roaw test bed presented here is not an exact replica of the actual \roaw competition test bed but fits its general specifications.
+As such, the specification presented here can be seen as a concrete example of using them for an actual implementation. 
+
+\subsection{Environment Structure and Properties}
+
+
+
+\begin{figure}[htb]
+  \begin{center}
+  	\hfill
+	  \subfigure[Wall]{
+  	  \scalebox{1.0}[1.0]{%
+  		  \includegraphics[height=40mm,angle=0, trim=0px 0px 0px 0px,clip]%
+	  		{./fig/wallsROAW.jpg}%
+			}%
+  	\label{fig:wallsROAW} 
+		}%
+		\hfill
+	  \subfigure[Workstation]{
+		  \scalebox{1.0}[1.0]{
+  		  \includegraphics[height=40mm,angle=0,trim=-10px -5px -10px -5px,clip]%
+	  		{./fig/workstationROAW.jpg}%
+			}
+		   \label{fig:workstationROAW}
+		}%
+		\hfill\mbox{}
+	  \caption{Example of mobile manipulators for \roaw}
+  	\label{fig:roawRobots} 
+	\end{center}
+\end{figure}
+
+\begin{itemize}
+ \item \textbf{Wall element.} Figure \ref{fig:wallsROAW} shows a wall element used for \roaw. The wall elements are of 30cm height and 4 cm thick. The wall elements comes in three different length which are 54cm, 80cm and 120cm.
+ \item \textbf{Floor.} Flat with no stairs and no ramp.
+ \item \textbf{Workstation.} Figure \ref{fig:wallsROAW} shows a workstation used for \roaw. The workstation area is 80cmx50cm and its surface is 10cm above the floor ground.
+ The workstation can be equipped with drilling machine and  force fitting machine.
+ \item \textbf{Spatial areas.} There are five spatial areas in the \roaw arena (shelves, conveyor belt, drilling machine, assembly workstation and force fitting workstation). The spatial areas are assigned based on the production activities.
+ \item  \textbf{Shelves.} The shelves are used for storing parts. Each shelves has its identifier.
+\end{itemize}

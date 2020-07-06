@@ -1,0 +1,271 @@
+%!TEX root = ./ERL Industrial Robots-rulebook.tex
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+\section{Introduction to \erlir}
+\label{sec:Intro}
+The objective of the \erl is to organize several indoor robot competition events per year, ensuring a
+scientific competition format, around the following two challenges: \erlsr and \erlir.
+Those indoor robot competitions will be focused on two major challenges addressed by H2020: societal
+challenges (service robots helping and interacting with humans at home, especially the elderly and
+those with motor disabilities) and industrial leadership (industrial robots addressing the flexible factories of the future and modern automation issues). These challenges were addressed by \ro and \rockeutwo and will be extended in the \erl by building on the current version of the
+rule books and testbeds designed and used during RockEU2’s project lifetime.
+
+
+Greater automation in broader application domains than today is essential for ensuring European industry remains competitive, production processes are flexible to custom demands and factories can operate safely in harsh or dangerous environments.  
+In the \erlir competition, robots will assist with the assembly of a drive axle - a key component of the robot itself and therefore a step towards self-replicating robots. 
+Tasks include locating, transporting and assembling necessary parts, checking their quality and preparing them for other machines and workers. 
+By combining the versatility of human workers and the accuracy, reliability and robustness of mobile robot assistants, the entire production process is able to be optimized. 
+
+The \erlir competition is looking to make these innovative and flexible manufacturing systems, such as that required by the \rollin factory, a reality. 
+This is the inspiration behind the challenge and the following scenario description.
+A more detailed account of the \erlir competition, but still targeted towards a general audience, is given in the \erlir in a Nutshell document, which gives a brief introduction to the very idea of the \erl and the \erlir competition, the underlying user story, and surveys the scenario, including the environment for user story, the tasks to be performed, and the robots targeted.
+Furthermore, this document gives general descriptions of the task benchmarks and the functional benchmarks that make up \erlir. 
+The document on hand is the rule book for \erlir, and it is assumed that the reader has already read the nutshell document. 
+The audience for the current document are teams who want to participate in the competition, the organizers of events where the \erlir competition is supposed to be executed, and the developers of simulation software, who want to provide their customers and users with ready-to-use models of the environment. 
+
+
+The remainder of this document is structured as follows:
+Section \ref{sec:AwardCategories}, \emph{\textbf{award categories}} surveys the number and kind of awards that will be awarded and how the ranking of the award categories is determined based on individual benchmark results.
+The \emph{\textbf{testbed}} for \erlir competitions is described in some detail in the next section (Section \ref{sec:TestBed}). 
+Subsections are devoted to the specification of the structure of the environment and its properties (Section \ref{ssec:StructureProperties}), to the mechanical parts and objects in the environment which can be manipulated (Section \ref {sssec:PartstoManipulate}), to objects in the environment that need to be recognized for completing the task (Section \ref{sssec:EnvironmentObjectstoRecognize}), to the networked devices embedded in the environment and accessible to the robot (Section \ref{ssec:NetworkedDevices}), and to the benchmarking equipment which we plan to install in the environment and which may impose additional constraints to the robot's behavior (equipment presenting obstacles to avoid) or add further perceptual noise (visible equipment, see Section \ref{ssec:BenchmarkingEquipment}).
+Next (Section \ref{sec:RobotsTeams}), we provide some specifications and constraints applying to the \emph{\textbf{robots and teams}} permitted to participate in \erlir. 
+The \erl consortium is striving to minimize such constraints, but for reasons of safety and practicality such constraints are required. 
+After that, the next two sections describe in detail the \emph{\textbf{task benchmarks}} (Section \ref{sec:TaskBenchmarks}) and the \emph{\textbf{functionality benchmarks}} (Section \ref{sec:FunctionalityBenchmarks}) comprising the \erlir competition, while information on scoring and ranking the performance of participating teams on each benchmark is already provided in the benchmark descriptions.%, Section \ref{sec:AwardCategories}, \emph{\textbf{award categories}} surveys the number and kind of awards that will be awarded and how the ranking of the award categories is determined based on individual benchmark results. 
+%Last but not least, Section \ref{sec:RoawOrganization} provides details on \emph{\textbf{organizational issues}}, like the committees involved, the media to communicate with teams, qualification and setup procedures, competition schedules, and post-competition activities.   
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\input{secErlirRulebookAwards}
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\clearpage\phantomsection
+\section{The \erlir Testbed}
+\label{sec:TestBed}
+
+The testbed for the \erlir competition consists of the arena (e.g. walls, workstation), networked devices and task-related objects. The robot can communicate and interact with the networked devices, which allow the robot to exert control on the testbed to a certain extend. 
+Figure \ref{fig:rockin-n-rollin-production-area} shows the evolution of the \erlir environment from its early concept in \roaw to its implementation in the \roaw event in Lisbon in 2015 and \roaw last event in Polimi in 2017.
+Participating teams should assume the competition environment to be similar to those shown in Figure \ref{fig:rockin-n-rollin-production-area}; deviations should only occur if on-site constraints (space available, safety regulations) enforce them.
+%
+\begin{figure}[htb]
+  \begin{center}
+  	\hfill
+	  \subfigure[Early concept]{
+		  \scalebox{1.0}[1.0]{
+  		  \includegraphics[height=40mm,angle=0,trim=0px 0px 0px 0px,clip]
+	  		{fig/AS_RoaW_Arena_v4}
+			}
+		  \label{fig:RulebookArenaConcept}
+		}%
+		\hfill
+	  \subfigure[Laboratory installation]{
+		  \scalebox{1.0}[1.0]{
+  		  \includegraphics[height=40mm,angle=0,trim=0px 100px 0px 200px,clip]%
+	  		{pics/atwork/test_beds/WorkArenaBRSU.jpg}%
+			}
+		   \label{fig:RulebookArenaLab}
+		}%
+		\hfill
+		 \subfigure[RoCKIn@Work 2015]{
+		  \scalebox{.5}[.5]{%
+  		  \includegraphics[height=80mm,angle=0,trim=-200px 0px -250px 0px,clip]%
+	  		{fig/testbed/roaw_arena_lisbon.JPG}%
+			}%
+			\label{fig:RulebookArena2014}
+		}%
+		\hfill
+		\subfigure[RoCKIn@Work 2017]{
+			\scalebox{.5}[.5]{%
+				\includegraphics[height=80mm,angle=0]%
+				{fig/testbed/roaw_arena_polimi.jpg}%
+			}%
+			\label{fig:RulebookArenaLisbon2015}
+		}%
+		\hfill\mbox{}
+	  \caption{The evolution of the \erlir environment}
+  	\label{fig:rockin-n-rollin-production-area}
+	\end{center}
+\end{figure}
+
+\input{ssecErlirRulebookTestbedEnvironment}
+\input{ssecErlirRulebookTestbedObjects}
+%\input{ssecErlirRulebookIdentifier}
+\input{ssecErlirRulebookTestbedNetDevices}
+\input{ssecErlirRulebookTestbedCFH}
+\input{ssecErlirRulebookTestbedBMequipment}
+
+\clearpage\phantomsection
+\input{secErlirRulebookRobots}
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\newpage
+\section{Task Benchmarks}
+\label{sec:TaskBenchmarks}
+
+Details concerning rules, procedures, as well as scoring and benchmarking methods, are common to all task benchmarks.
+
+\begin{description}
+\item[Rules and Procedures] Every run of each of the task benchmark will be preceded by a safety-check, outlined as follows:
+%
+\begin{enumerate}
+     \item The team members must ensure and inform at least one of the organizing committee (OC) member, present during the execution of the task, that they have an emergency stop button on the robot which is fully functional. Any member of the OC can ask the team to stop their robot at any time which must be done immediately.
+     \item A member of the OC present during the execution of the task will make sure that the robot complies with the other safety-related rules and robot specifications presented in Section~\ref{sec:RobotsTeams}.
+\end{enumerate}
+%
+All teams are required to perform each task according to the steps mentioned in the rules and procedures sub-subsections for the tasks. During the competition, all teams are required to repeat the task benchmarks several times. On the last day, only a selected number of top teams will be allowed to perform the task benchmarks again. Maximum time allowed for one task benchmark is 10 minutes. 
+
+%--------------------------------------------------------------------
+\item[Acquisition of Benchmarking Data]
+\label{sec:TbmAcquisitionOfData}
+Following some general notes on the acquisition of benchmarking data are described. They are valid for all task benchmarks, as well as for the functional benchmarks.
+
+\begin{itemize}
+\item{\textbf{Calibration parameters}}
+Important! Calibration parameters for cameras must be saved. This must be done for other sensors (e.g., Kinect) that require calibration as well, if a calibration procedure has been applied instead of using the default values (e.g., those provided by OpenNI).
+
+\item{\textbf{Notes on data saving}}
+The specific data that the robot must save is described in the benchmark section. In general some data streams (those with the highest bitrate) must be logged only in the time intervals when they are actually used by the robot to perform the activities required by the benchmark. In this way, system load and data bulk are minimized. For instance, whenever a benchmark includes object recognition activities, video and point cloud data must be logged by the robot only in the time intervals when it is actually performing object recognition.
+
+\item{\textbf{Use of data}}
+The logged data is not used during the competition. In particular, it is not used for scoring. The data is processed by \erl consortium members after the end of the competition. It is used for in-depth analysis and/or to produce datasets to be published for the benefit of the robotics community.
+
+\item{\textbf{Where and when to save data}}
+Robots must save the data as specified in the section ``Acquisition of Benchmarking Data'' of their respective TBM/FBM on a USB stick provided by \erlir staff. The USB stick is given to the team immediately before the start of the benchmark, and must be returned (with the required data on it) at the end of the benchmark. Each time a teams robot executes a benchmark, the team must:
+
+\begin{enumerate}
+	\item Create, in the root directory of the USB stick, a new directory named
+	\begin{itemize}
+		\item NameOfTheTeam\_FBMx\_DD\_HH-MM (for FBM) or
+		\item NameOfTheTeam\_TBMx\_DD\_HH-MM (for TBM)
+	\end{itemize}
+	\item Configure the robot to save the data files in these directories.
+\end{enumerate}
+
+\end{itemize}
+
+In the filenames above $x$ denotes the number of the benchmark, $DD$ is the day of the month and $HH$, $MM$ represent the time of the day (hours and minutes).
+
+All files produced by the robot that are associated with the execution of the benchmark must be written in this directory. Please note that a new directory must be created for each benchmark executed by the robot. This holds true even when the benchmark is a new run of one that the robot already executed.
+
+During the execution of the benchmark, the following data will be collected\footnote{In the following, `offline' identifies data produced by the robot, and stored locally on the robot, that will be collected by the referees when the execution of the benchmark ends (e.g., as files on a USB stick), while `online' identifies data that the robot has to transmit to the CFH during the execution of the benchmark. Data marked neither with `offline' nor `online' is generated outside the robot.}. In brackets the expected ROS topics are named. Corresponding data types can be stored in a YAML file (see Section \ref{sssec:YamlDataFileSpec}) or rosbag. Following the list of \textbf{offline data} to be logged:
+
+\begin{table}[h]
+	\centering
+	\begin{footnotesize}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Topic	&	Type		&	Frame Id		&	Notes \\ \hline\hline
+			/rockin/robot\_pose\tablefootnote{The 2D robot pose at the floor level, i.e., $z=0$ and only yaw rotation.} & geometry\_msgs/PoseStamped & /map & 10 Hz \\ \hline
+			/rockin/marker\_pose\tablefootnote{The 3D pose of the marker in 6 degrees of freedom.	} & geometry\_msgs\/PoseStamped	& /map & 10 Hz \\ \hline
+			/rockin/trajectory\tablefootnote{Trajectories planned by the robot including when replanning.} & nav\_msgs/Path & /map & Each (re)plan \\ \hline
+			/rockin/<device>/image\tablefootnote{Image processed for object perception; <device> must be any of stereo\_left, stereo\_right, rgb; if multiple devices of type <device> are available on your robot, you can append "\_0", "\_1", and so on to the device name: e.g., "rgb\_0", "stereo\_left\_2", and so on.} & sensor\_msgs/Image	& /<device>\_frame &  -- \\ \hline
+			/rockin/<device>/camera\_info\tablefootnote{Calibration info for /erlir/<device>/image.} & sensor\_msgs/CameraInfo & -- & --\\ \hline
+			/rockin/depth\_<id>/pointcloud\tablefootnote{Point cloud processed for object perception; <id> is a counter starting from 0 to take into account the fact that multiple depth camera could be present on the robot: e.g., "depth\_0", "depth\_1", and so on.} & sensor\_msgs/PointCloud2 & /depth\_<id>\_frame & -- \\ \hline
+			/rockin/scan\_<id>\tablefootnote{Laser scans, <id> is a counter starting from 0 to take into account the fact that multiple laser range finders could be present on the robot: e.g., "scan\_0", "scan\_1", and so on.} &	sensor\_msgs/LaserScan & /laser\_<id>\_frame	& 10-40Hz \\ \hline
+			tf\tablefootnote{The tf topic on the robot; the tf tree needs to contain the frames described in this table properly connected through the /base\_frame which is the odometric center of the robot.} & tf & 	--	& -- \\ \hline
+		\end{tabular}
+	\end{footnotesize}
+\end{table}
+
+Some robots might not have some of the sensors or they might have multiple instances of the previous data (e.g., multiple rgb cameras or multiple laser scanner), in this case you append the number of the device to the topic and the frame (e.g., /erlir/scan\_0 in /laser\_frame\_0). It is possible not to log some of the data, if the task does not require it.
+
+The \textbf{online} data part can be found in the description of the respective benchmark.
+%--------------------------------------------------------------------
+\item[Communication with CFH]
+\label{sec:CommCFH}
+The following steps describe the part of the CFH communication that is applicable for all TBMs.
+
+\begin{enumerate}
+	\item The robot sends a \textbf{BeaconSignal} message at least every second.
+	\item The robot waits for \textbf{BenchmarkState} messages. It starts the benchmark execution when the \emph{phase} field is equal to EXECUTION and the \emph{state} field is equal to RUNNING.
+	\item The robot waits for an \textbf{Inventory} message from the CFH (which is continuously sent out by the CFH) in order to receive the initial distribution of objects and their locations in the environment.
+	\item The robot waits for an \textbf{Order} message from the CFH (which is sent out continuously by the CFH) in order to receive the actual task, i.e., where the objects should be at the end.
+	\item The task benchmark ends when all objects are at their final location as specified in the \textbf{Order} message. After that the robot sends a message of type \textbf{BenchmarkFeedback} to the CFH with the \emph{phase\_to\_terminate} field set to EXECUTION. The robot should do this until the \textbf{BenchmarkState}'s \emph{state} field has changed.
+\end{enumerate}
+
+The messages to be sent and to be received can be seen on the Github repository located at \cite{rockin:CFHMessages}.
+
+\item[Scoring and Ranking] 
+Evaluation of the performance of a robot according to this task benchmark is based on performance equivalence classes and they are related to the fact that the robot has done the required task or not. 
+
+The criterion defining the performance equivalence class of robots is based on the concept of \emph{tasks required achievements}. While the ranking of the robot within each equivalence class is obtained by looking at the performance criteria. In particular:
+%
+\begin{itemize}
+\item The performance of any robot belonging to performance class N is considered as better than the performance of any robot belonging to performance class $M$ whenever $M<N$
+\item Considering two robots belonging to the same class, then a penalization criterion (penalties are defined according to task performance criteria) is used and the performance of the one which received less penalizations is considered as better
+\item If the two robots received the same amount of penalizations, the performance of the one which finished the task more quickly is considered as better (unless not being able to reach a given achievement within a given time is explicitly considered as a penalty).
+\end{itemize}
+%
+Performance equivalence classes and in-class ranking of the robots are determined according to three sets:
+%
+\begin{itemize}
+\item A set $A$ of \textbf{achievements}, i.e.,~things that should happen (what the robot is expected to do).
+\item A set $PB$ of \textbf{penalized behaviors}, i.e.,~robot behaviors that are penalized, if they happen, (e.g.,~hitting furniture).
+\item A set $DB$ of \textbf{disqualifying behaviors}, i.e.,~robot behaviors that absolutely must not happen (e.g.,~hitting people).
+\end{itemize}
+%
+Scoring is implemented with the following 3-step sorting algorithm:
+%
+\begin{enumerate}
+\item If one or more of the elements of set $DB$ occur during task execution, the robot gets disqualified (i.e.~assigned to the lowest possible performance class, called class $0$), and no further scoring procedures are performed.
+\item Performance equivalence class $X$ is assigned to the robot, where $X$ corresponds to the number of achievements in set $A$ that have been accomplished.
+\item Whenever an element of set $PB$ occurs, a penalization is assigned to the robot (without changing its performance class).
+\end{enumerate}
+%
+One key property of this scoring system is that a robot that executes the required task completely will always be placed into a higher performance class than a robot that executes the task partially. Moreover the penalties do not make a robot change class (also in the case of incomplete task).
+%
+
+\item[Penalized Behaviors and Disqualifying Behaviors]
+The penalizing behaviors for all task benchmarks are:
+\begin{itemize}
+\item The robot collides with obstacles in the testbed.
+\item The robot drops an object.
+\item The robot stops working.
+\item The robot accidentally place an object on top of another object.
+\end{itemize}
+The disqualifying behaviors for all task benchmarks are:
+\begin{itemize}
+\item The robot damages or destroys the objects requested to manipulate.
+\item The robot damages the testbed.
+\end{itemize}
+The achievements for each task are unique and are described in the respective task benchmark section.
+
+\end{description}
+
+%\input{ssecErlirRulebookTBMAssemblyAidTray}
+%\input{ssecErlirRulebookTBMPlateDrilling}
+\input{ssecErlirRulebookTBMFillaBox}
+%\input{BTT}
+
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\clearpage
+\section{Functionality Benchmarks}
+\label{sec:FunctionalityBenchmarks}
+
+\paragraph{Communication with CFH}
+\label{ssec:CommCFH}
+Every functionality benchmark will be preceded by a safety-check similar to that described for the task benchmark procedures.
+All teams are required to perform each functionality benchmark according to the steps mentioned in their respective section. During the competition, all teams are required to repeat it the functionality benchmark several times. On the last day, only a selected number of top teams will be allowed to perform it.
+
+
+\input{ssecErlirRulebookFBMObjectPerception}
+\input{ssecErlirRulebookFBMManipulation}
+\input{ssecErlirRulebookFBMManipulationPlace}
+%\input{ssecErlirRulebookFBMControl}
+\input{ssecErlirRuleBookFBMExploration}
+
+%\input{secErlirRulebookOrganization}
+
+%--------------------------------------------------------------------
+% EOF
+%--------------------------------------------------------------------

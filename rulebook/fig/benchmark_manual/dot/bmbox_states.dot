@@ -1,0 +1,29 @@
+digraph {
+	label="RoCKIn@Home/Work - Benchmarking Box states";
+	rankdir=TD
+	
+	node[shape="oval", style=""]
+		start[label="START"];
+		waiting_client[label="WAITING\nCLIENT"];
+		ready[label="READY"];
+		waiting_manual[label="WAITING\nMANUAL OPERATION"];
+		completed_manual[label="COMPLETED\nMANUAL OPERATION"];
+		transmitting_goal[label="TRANSMITTING\nGOAL"];
+		executing_goal[label="EXECUTING\nGOAL"];
+		waiting_result[label="WAITING\nRESULT"];
+		transmitting_score[label="TRANSMITTING\nSCORE"];
+		end[label="END"];
+
+	start -> waiting_client[weight=10];
+	waiting_client -> ready[weight=10];
+	ready -> waiting_manual[weight=10];
+	waiting_manual -> completed_manual[weight=10];
+	ready -> transmitting_goal;
+	ready -> transmitting_score;
+	completed_manual -> transmitting_goal[weight=10];
+	transmitting_goal -> executing_goal[weight=10];
+	executing_goal -> waiting_result[weight=10];
+	waiting_result -> transmitting_score[weight=10];
+	waiting_result -> ready;
+	transmitting_score -> end[weight=10];	
+}

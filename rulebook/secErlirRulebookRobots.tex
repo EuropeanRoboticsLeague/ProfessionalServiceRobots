@@ -1,0 +1,114 @@
+%!TEX root = ./ERL Industrial Robots.tex
+
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\section{Robots and Teams}
+\label{sec:RobotsTeams}
+The purpose of this section is twofold: 
+\begin{enumerate}
+\item It specifies information about various robot features that can be derived from the environment and the targeted tasks. These features are to be considered at least as desirable, if not required for a proper solution of the task. Nevertheless, we will try to leave the design space for solutions as large as possible and to avoid premature and unjustified constraints.
+\item The robot features specified here should be supplied in detail for any robot participating in the competition. This is necessary in order to allow better assessment of competition and benchmark results later on. 
+\end{enumerate}
+
+The description of the robot should be included in the team description paper.
+
+\subsection{General Specifications and Constraints on Robots and Teams}
+\label{ssec:RobotSpecification}
+
+%-----------
+\begin{robotSpec}[System]
+A competing team may use a single robot or multiple robots acting as a team.
+It is not required that the robots are certified for industrial use.
+At least one of the robots entered by a team is capable of:
+\begin{itemize}
+\item mobility and autonomous navigation. 
+\item manipulate and grasp at least several different task-relevant objects. The specific kind of manipulation and grasping activity required is to be derived from the task specifications.
+\end{itemize}
+The robot subsystems (mobility, manipulation and grasping) should work with the environment and objects specified in this rule book.
+\end{robotSpec}
+
+%-----------
+\begin{robotSpec}[Sensor Subsystems]
+Any robot used by a team may use any kind of \textbf{onboard} sensor subsystem, provided that the sensor system is admitted for use in the general public, its operation is safe at all times, and it does not interfere with other teams or the environment infrastructure. 
+A team may use the sensor system in the environment provided by the organizer by using a wireless communication protocol specified for such purpose. Sensor systems used for benchmarking and any other systems intended for exclusive use of the organizers are not accessible by the robot system. 
+Teams are not allowed to modify the environment or to install their own embedded devices in the environment, e.g., additional sensors or actuators.
+\end{robotSpec}
+
+
+%-----------
+\begin{robotSpec}[Communication Subsystems]
+	Any robot used by a team may \textbf{internally} use any kind of communication subsystem, provided that the communication system is admitted for use in the general public, its operation is safe at all times, and it does not interfere with other teams or the environment infrastructure.
+	A robot team must be able to use the communication system provided \textbf{as part of the environment} by correctly using a protocol specified for such purpose and provided as part of the scenario. 
+\end{robotSpec}
+
+
+%-----------
+\begin{robotSpec}[Power Supply]
+	Any mobile device (esp.~robots) must be designed to be usable with an onboard power supply (e.g.~a battery). The power supply should be sufficient to guarantee electrical autonomy for a duration exceeding the periods foreseen in the various benchmarks, before recharging of batteries is necessary.	
+	Charging of robot batteries must be done outside of the competition environment. The team members are responsible for safe recharging of batteries. 
+	If a team plans to use inductive power transmission devices for charging the robots, they need to request permission from the event organizers in advance and at least three months before the competition. 
+	Detailed specifications about the inductive device need to be supplied with the request for permission. 
+\end{robotSpec}
+
+%-----------
+\begin{robotConstraint}[Computational Subsystems]
+	Any robot or device used by a team as part of their solution approach must be suitably equipped with computational devices (such as onboard PCs, microcontrollers, or similar) with sufficient computational power to ensure safe autonomous operation. 
+	Robots and other devices may use external computational facilities, including Internet services and cloud computing to provide richer functionalities, but the safe operation of robots and devices may not depend on the availability of communication bandwidth and the status of external services. 	
+\end{robotConstraint}
+%-----------
+
+\begin{robotConstraint}[Safety and Security Aspects]
+	For any device a team brings into the environment and/or the team area, and which features at least one actuator of any kind (mobility subsystems, robot manipulators, grasping devices, actuated sensors, signal-emitting devices, etc.), a mechanisms must be provided to immediately stop its operation in case of an emergency (emergency stop). 
+	For any device a team brings into the environment and/or the team area, it must guarantee safe and secure operation at all times. 
+	Event officials must be instructed about the means to stop such devices operating and how to switch them off in case of emergency situations. 
+\end{robotConstraint}
+
+%-----------
+\begin{robotConstraint}[Operation]
+In the competition, the robot should perform the tasks autonomously.
+An external device is allowed for additional computational power.
+It must be clear at all times that no manual or remote control is exerted to influence the behavior of the robots during the execution of tasks.
+\end{robotConstraint}
+
+
+%-----------
+\begin{robotConstraint}[Environmental Aspects]
+  Robots, devices, and apparatus causing pollution of air, such as combustion engines, or other mechanisms using chemical processes impacting the air, are not allowed.
+  Robots, devices, and any apparatus used should minimize noise pollution. In particular, very loud noise as well as well-audible constant noises (humming, etc.) should be avoided. The regulations of the country in which a competition or benchmark is taking place must be obeyed at all times. The event organizers will provide specific information in advance, if applicable. Robots, devices, and any apparatus used should not be the cause of effects that are perceived as a nuisance to humans in the environment. Examples of such effects include causing wind and drafts, strong heat sources or sinks, stenches, or sources for allergic reactions. 
+\end{robotConstraint}
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+\subsection{Benchmarking Equipment in the Robots}
+\label{ssec:RobotBenchEquip}
+
+\paragraph{Preliminary Remark:}
+Whenever teams are required to install some element provided by \erlir on (or in) their robots, such element will be carefully chosen in order to minimize the work required from teams and the impact on robot performance.
+
+\paragraph{Hardware}
+As a general rule, \erlir does not require that teams install additional robotic hardware on their robots. Moreover, permanent change to the robot's hardware is never required. However, \erlir may require that additional standard PC hardware (such as an external, USB-connected hard disk for logging) is temporarily added to the robot in order to collect internal benchmarking data. When this is the case, the additional hardware is provided by \erlir during the competition, and its configuration for use is either automatically performed by the operating system, or very simple.
+
+To allow the acquisition of external benchmarking data about their pose, robots need to be fitted with special reflective markers, mounted in known positions. The teams will be required to prepare their robots to ease the mounting of the markers. Teams will be required to provide the geometric transformation from the position of the marker to the odometric center of the robot\footnote{Benchmarking data related to poses will refer to the marker position: this is why additional information is required to know the position of the base.}.
+
+\paragraph{Software} \erlir may require that robots run \erlir-provided (or publicly available) software during benchmarks. A typical example of such software is a package that logs data provided by the robot, or a client that interfaces with a \erlir server via the wireless network of the testbed. Whenever a team is required to install and run such a package, it will be provided as source code, its usage will be most simple, and complete instruction for installation and use will be provided along with it. All \erlir software is written to have a minimal impact on the performance of a robot, both in terms of required processing power and in terms of (lack of) interaction with other modules. When required by a benchmark, the relevant \erlir software to be run by participating robots is provided well in advance with respect to the competition.
+
+\erlir will make any effort to avoid imposing constraints on the teams participating to the competition in terms of software architecture of their robots. This means that any provided piece of software will be designed to have the widest generality of application. However, this does not mean that the difficulty of incorporating such software into the software architecture of a robot will be independent from such architecture: for technical reasons, differences may emerge. A significant example is that of software for data logging. At the moment, it appears likely that any such software by \erlir will be based on the established \emph{rosbag} software tool, library and file format. As rosbag is part of ROS (Robot Operating System), robots based on ROS can use it to log data without any modification; on the contrary, robots not using ROS will be required to employ the rosbag library to create rosbag files (\emph{bagfiles}) or to develop ad-hoc code to convert their well established logging format into the rosbag one by using the rosbag API. If this will be the case, \erlir will provide tools to ease the introduction of software modules for creation of bagfiles into any software architecture; yet, teams not using ROS will probably have to perform some additional work to use such tools.
+
+\subsection{Robot Communication with Benchmarking Equipment}
+\label{ssec:BenchEquipRobotCommunication}
+For some types of internal benchmarking data (i.e.~provided by the robot), logging is done on board the robot, and data are collected after the benchmark (for instance, via USB stick). Other types of internal benchmarking data, instead, are communicated by the robot to the testbed during the benchmark. In such cases, communication is done by interfacing the robot with standard wireless network devices (e.g. IEEE 802.11n) that are part of the testbed, and which therefore become a part of the benchmarking equipment of the testbed. However, it must be noted that network equipment is not strictly dedicated to benchmarking: for some benchmarks, in fact, the \wifi ~may be (or exclusively) used to perform interaction between the robot and the testbed.
+
+Due to the need to communicate with the testbed via the \wifi, all robots participating to the \erlir competition are required to:
+\begin{enumerate}
+\item possess a fully functional IEEE 802.11n network interface\footnote{It must be stressed that full functionality requires that the network interface must not be hampered by electromagnetic obstacles, for instance by mounting it within a metal structure and/or by employing inadequate antenna arrangements. Network spectrum in the competition area is typically very crowded, and network equipment with impaired radio capabilities may not be capable of accessing the testbed \wifi, even if correctly working in less critical conditions.};
+\item be able to keep the wireless network interface permanently connected to the testbed \wifi \ for the whole duration of the benchmarks.
+\end{enumerate}
+
+\input{ssecGeneralYamlDataFileSpec}
+
+%--------------------------------------------------------------------
+% EOF
+%--------------------------------------------------------------------

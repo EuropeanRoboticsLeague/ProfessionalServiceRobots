@@ -1,0 +1,36 @@
+%!TEX root = ./ERL Industrial Robots-rulebook.tex
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\subsection{Central Factory Hub}
+\label{ssec:CFH}
+
+The main idea of the \erlir testbed software infrastructure is to have a central server-like hub (the \erlir \CFH) that serves all the services that are needed for executing and scoring tasks and successfully realize the competition. This hub is derived from software systems well known in industrial business (e.g. SAP). It provides the robots with information regarding the specific tasks and tracks the production process as well as stock and logistics information of the \rollin factory. It is a plug-in driven software system. Each plug-in is responsible for a specific task, benchmarking or other functionality.
+
+\noindent
+The following set of specifications must be met by the \erlir \CFH (CFH).
+%-----------
+\begin{CFHSpec}[Central Factory Hub]
+Central managing of all services needed for controlling data, devices and robots. In the following paragraphs, several plug-in will be described. In future, a web-based user interface would be useful.
+\end{CFHSpec}
+
+%-----------
+\begin{CFHSpec}[Benchmarking Plug-in]
+A plug-in to serve general benchmark functionalities or interact with a separated BM software.
+\end{CFHSpec}
+
+%-----------
+\begin{CFHSpec}[Production Tracking Database Plug-in]
+An automatic plug-in with the central database tracking all identifiers, status of finished products, sub-assemblies, stock level etc. 
+\end{CFHSpec}
+
+The CFH-related sources and client example can be obtained from the following locations:
+
+\begin{itemize}
+	\item CFH: \url{https://github.com/industrial-robotics/atwork_central_factory_hub}
+	\item Client example: \url{https://github.com/industrial-robotics/atwork_refbox_ros_client}
+\end{itemize}
+
+%--------------------------------------------------------------------
+% EOF
+%--------------------------------------------------------------------

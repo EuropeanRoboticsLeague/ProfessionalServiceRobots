@@ -1,0 +1,47 @@
+\subsection{YAML Data File Specification} \label{sssec:YamlDataFileSpec}
+The subsequent paragraphs specify the YAML file format that can be converted to ROS bag files. This closely follows the data items described in D-2.1.7 \cite{rockin:D-2.1.7:2014}. The YAML format was chosen because it is a simple format, easy to produce without using any special library. Furthermore, the ROS messages format is already defined: as produced by the \verb!rostopic echo! command.
+
+\subsubsection{File Format}
+The YAML file should be composed of a single list of messages. Each message should have four items:
+\begin{itemize}
+ \item \verb!topic! - The topic name.
+ \item \verb!secs! - Timestamp of the message, in number of seconds since 1970.
+ \item \verb!nsecs! - Nanoseconds component of the timestamp.
+ \item \verb!message! - The message, according to the topic type.
+\end{itemize}
+
+The message should be formatted in YAML, according to its structure. This is the same as the output of \verb!rostopic echo!. However, binary fields may be specified in base 64 encoding for much smaller files. You can copy the file \verb!src/base64.hpp! to your project, it depends only on boost to encode base 64.
+
+And example for a file generated according to above specification could look as follows:
+\begin{verbatim}
+- topic: pose2d
+  secs: 1397024209
+  nsecs: 156423000
+  message:
+   x: 5.5
+   y: 6
+   theta: 6.4
+- topic: image
+  secs: 1397024210
+  nsecs: 53585000
+  message:
+   header:
+     seq: 306
+     stamp:
+       secs: 1397024210
+       nsecs: 53585000
+     frame_id: ''
+   height: 4
+   width: 4
+   encoding: bgr8
+   is_bigendian: 0
+   step: 12
+   data:
+     !!binary JaU8JY0kGXUIAZ0UDWzgAXjgAb0kIglwbkGsnkWwoiWUfiGUhi2olhmUgc1YRaUw
+\end{verbatim}
+
+\subsubsection{YAML-to-ROSbag Conversion Tool}
+A tool to convert \erl YAML files into ROS bag files is available at the RoCKIn Github repository:
+\begin{center}
+	\url{https://github.com/rockin-robot-challenge/benchmark_and_scoring_converter}
+\end{center}

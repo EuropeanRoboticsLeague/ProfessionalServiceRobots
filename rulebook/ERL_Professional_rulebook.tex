@@ -1,0 +1,32 @@
+%%% define document class with global options
+\documentclass[11pt,a4paper,twoside]{article}
+
+%%% all inclusions of packages, macro definitions, and redefines
+%%% have been move to preamble.tex !!!
+\input{preamble}
+
+%#####################################################################
+\begin{document}
+\pagenumbering{roman}
+
+%--------------------------------------------------------------------
+\input{titlepageRulebook}
+\clearpage
+\thispagestyle{empty}
+\mbox{ }
+\clearpage
+
+\tableofcontents
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+%--------------------------------------------------------------------
+\input{chapterErlirRulebook}
+
+%--------------------------------------------------------------------
+\bibliographystyle{../tex/bibstyles/IEEEtran} 
+\bibliography{bib/erlir}
+%--------------------------------------------------------------------
+\end{document}
+%#####################################################################

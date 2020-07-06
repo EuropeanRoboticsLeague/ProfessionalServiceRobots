@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
+	<title>Playlist</title>
+	<trackList>
+		<track>
+			<location>v4l2:///dev/video0</location>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>0</vlc:id>
+				<vlc:option>v4l2-standard=</vlc:option>
+				<vlc:option>v4l2-dev=/dev/video0</vlc:option>
+				<vlc:option>v4l2-vbidev=</vlc:option>
+				<vlc:option>v4l2-chroma=</vlc:option>
+				<vlc:option>v4l2-input=0</vlc:option>
+				<vlc:option>v4l2-audio-input=-1</vlc:option>
+				<vlc:option>v4l2-width=1280</vlc:option>
+				<vlc:option>v4l2-height=720</vlc:option>
+				<vlc:option>v4l2-aspect-ratio=16:10</vlc:option>
+				<vlc:option>v4l2-radio-dev=/dev/radio0</vlc:option>
+				<vlc:option>v4l2-tuner-frequency=-1</vlc:option>
+				<vlc:option>v4l2-tuner-audio-mode=3</vlc:option>
+				<vlc:option>no-v4l2-controls-reset</vlc:option>
+				<vlc:option>v4l2-brightness=-1</vlc:option>
+				<vlc:option>v4l2-brightness-auto=-1</vlc:option>
+				<vlc:option>v4l2-contrast=-1</vlc:option>
+				<vlc:option>v4l2-saturation=-1</vlc:option>
+				<vlc:option>v4l2-hue=-1</vlc:option>
+				<vlc:option>v4l2-hue-auto=-1</vlc:option>
+				<vlc:option>v4l2-white-balance-temperature=-1</vlc:option>
+				<vlc:option>v4l2-auto-white-balance=-1</vlc:option>
+				<vlc:option>v4l2-red-balance=-1</vlc:option>
+				<vlc:option>v4l2-blue-balance=-1</vlc:option>
+				<vlc:option>v4l2-gamma=-1</vlc:option>
+				<vlc:option>v4l2-autogain=-1</vlc:option>
+				<vlc:option>v4l2-gain=-1</vlc:option>
+				<vlc:option>v4l2-sharpness=-1</vlc:option>
+				<vlc:option>v4l2-chroma-gain=-1</vlc:option>
+				<vlc:option>v4l2-chroma-gain-auto=-1</vlc:option>
+				<vlc:option>v4l2-power-line-frequency=-1</vlc:option>
+				<vlc:option>v4l2-backlight-compensation=-1</vlc:option>
+				<vlc:option>v4l2-band-stop-filter=-1</vlc:option>
+				<vlc:option>no-v4l2-hflip</vlc:option>
+				<vlc:option>no-v4l2-vflip</vlc:option>
+				<vlc:option>v4l2-rotate=-1</vlc:option>
+				<vlc:option>v4l2-color-killer=-1</vlc:option>
+				<vlc:option>v4l2-color-effect=-1</vlc:option>
+				<vlc:option>v4l2-audio-volume=-1</vlc:option>
+				<vlc:option>v4l2-audio-balance=-1</vlc:option>
+				<vlc:option>no-v4l2-audio-mute</vlc:option>
+				<vlc:option>v4l2-audio-bass=-1</vlc:option>
+				<vlc:option>v4l2-audio-treble=-1</vlc:option>
+				<vlc:option>no-v4l2-audio-loudness</vlc:option>
+				<vlc:option>v4l2-set-ctrls=</vlc:option>
+				<vlc:option>live-caching=300</vlc:option>
+			</extension>
+		</track>
+	</trackList>
+	<extension application="http://www.videolan.org/vlc/playlist/0">
+			<vlc:item tid="0"/>
+	</extension>
+</playlist>

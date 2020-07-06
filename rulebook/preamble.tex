@@ -1,0 +1,339 @@
+%!TEX root = ./ERL Industrial Robots.tex
+
+\newcommand{\myversion}{1}
+
+%%% fix language and font encoding
+\usepackage[english]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%%% use general utility packages that ease use of other packages
+\usepackage{ifthen}
+\usepackage{calc}
+\usepackage{pbox}
+
+%%% fix the geometry of the document
+\usepackage[left=20mm,right=30mm,top=25mm,bottom=25mm]{geometry}
+
+%%% fix setting for margin notes
+\setlength{\marginparsep}{2mm}
+\setlength{\marginparwidth}{26mm}
+\setlength{\marginparpush}{1mm}
+
+%%% adapt percentage of space usable for figures on top and bottom
+%%% (default values result in too many figures ending on pages of floats
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+
+%%% fix headings and footings
+\newcommand{\erlcopyright}{\copyright\ 2016 by ERL Team}
+\usepackage{fancyhdr}
+\fancyhf{}
+\fancyhead[LO,RE]{\footnotesize\nouppercase{\leftmark}}
+\fancyhead[LE,RO]{\footnotesize\nouppercase{\rightmark}}
+\fancyhead[C]{\footnotesize}
+\fancyfoot[LO,RE]{\footnotesize Revision \revisionNumber}
+\fancyfoot[LE,RO]{\fancyplain{\footnotesize\bricscopyright}{\footnotesize\erlcopyright}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\plainheadrulewidth}{0.6pt}
+\renewcommand{\plainfootrulewidth}{0.6pt}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+\pagestyle{fancy}
+
+%%% packages for handling insertion of figures
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{epstopdf} 
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.gif,.eps,.mps} 
+
+%%% packge helpful for typesetting landscape tables and figures
+%%% note: this will rotate the complete figure including captions
+%%% note: for rotating inserted picture only use "angle" option in graphicx
+\usepackage{rotating}
+\usepackage{tablefootnote}
+
+%%% helpful package for multiple author editing and proofreading
+\usepackage{todonotes} %[disable]
+
+%%% a package for some special symbols (celsius, ohm, etc.)
+\usepackage{textcomp, gensymb}
+
+%%% packages for math environment 
+\usepackage{amssymb}
+\usepackage{amstext}
+%\usepackage{amsopn}
+\usepackage{amsthm}
+\usepackage{thmtools}
+
+%%% not clear what the next is good for
+% It fixes the problem of "undefined control sequence \IfStrEq"
+\usepackage{xstring}
+
+%%% the xspace package is useful for handling spacing in macros
+\usepackage{xspace}
+\usepackage{acronym}
+
+%%% various other packages
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{url}
+\usepackage[unicode]{hyperref}
+
+%\usepackage[citestyle=numeric]{biblatex}
+%\renewcommand{\bibname}{References}
+
+%setting for better visibility of todonotes - Jakob
+\setlength{\marginparwidth}{2cm}
+
+%we will have long table to show alle the objects in the environment
+\usepackage{longtable}
+
+%--------------------------------------------------------------------
+\declaretheorem[thmbox=M,numberwithin=section,name=Definition]%
+{definition}
+\declaretheorem[thmbox=M,numberwithin=section,name=Scenario Specification]%
+{scenarioSpec}
+\declaretheorem[thmbox=M,numberwithin=section,name=Scenario Constraint]%
+{scenarioConstraint}
+\declaretheorem[thmbox=M,numberwithin=section,name=Environment Specification]%
+{envSpec}
+\declaretheorem[thmbox=M,numberwithin=section,name=CFH Specification]%
+{CFHSpec}
+\declaretheorem[thmbox=M,numberwithin=section,name=Environment Constraint]%
+{envConstraint}
+\declaretheorem[thmbox=M,numberwithin=section,name=Feature Specification]%
+{featureSpec}
+\declaretheorem[thmbox=M,numberwithin=section,name=Feature Variation]%
+{featureVar}
+\declaretheorem[thmbox=M,numberwithin=section,name=Input Specification]%
+{inputSpec}
+\declaretheorem[thmbox=M,numberwithin=section,name=Object Specification]%
+{objectSpec}
+\declaretheorem[thmbox=M,numberwithin=section,name=Object Constraint]%
+{objectConstraint}
+\declaretheorem[thmbox=M,numberwithin=section,name=Robot Specification]%
+{robotSpec}
+\declaretheorem[thmbox=M,numberwithin=section,name=Robot Constraint]%
+{robotConstraint}
+\declaretheorem[thmbox=M,numberwithin=section,name=Task Specification]%
+{taskSpec}
+\declaretheorem[thmbox=M,numberwithin=section,name=Task Constraint]%
+{taskConstraint}
+\declaretheorem[thmbox=M,numberwithin=section,name=Rule]%
+{rockinRule}
+
+
+%----project defs------------------------------------------------
+\newcommand{\ro}{RoCKIn\xspace}
+\newcommand{\rollin}{RoCKIn\-'N'\-RoLLIn\xspace}
+\newcommand{\roaw}{RoCKIn\-@Work\xspace}
+\newcommand{\roah}{RoCKIn\-@Home\xspace}
+
+\newcommand{\rc}{Robo\-Cup\xspace}
+\newcommand{\rcaw}{Robo\-Cup\-@Work\xspace}
+\newcommand{\rcah}{Robo\-Cup\-@Home\xspace}
+
+\newcommand{\rockeutwo}{RockEU2\xspace}
+\newcommand{\erl}{European Robotics League\xspace}
+\newcommand{\erlir}{ERL-PSR\xspace}
+\newcommand{\erlsr}{ERL-CSR\xspace}
+\newcommand{\erlirlong}{ERL Professional Service Robots\xspace}
+\newcommand{\erlsrlong}{ERL Consumer Service Robots\xspace}
+
+\newcommand{\wifi}{WLAN}
+\newcommand{\wlan}{WLAN}
+
+\newcommand{\CFH}{Central Factory Hub}
+
+\newcommand{\myNutshellAlone}{no}
+\newcommand{\myRuleBookAlone}{no}
+\newcommand{\myCompetitionDesignAlone}{no}
+
+%\DeclareMathOperator*{\argmin}{arg\,min}
+%\DeclareMathOperator*{\argmax}{arg\,max}
+%\newcommand{\x}{\mathbf{x}}
+%\newcommand{\X}{\mathbf{X}}
+%\newcommand{\p}{\mathbf{P}}
+%\newcommand{\z}{\mathbf{z}}
+%\newcommand{\e}{\mathbf{e}}
+%\newcommand{\la}{\mathbf{l}}
+%\newcommand{\ob}{\mathbf{o}}
+%\newcommand{\Ob}{\mathbf{O}}
+%\newcommand{\w}{\mathbf{w}}
+%\newcommand{\Om}{\mathbf{\Omega}}
+%\newcommand{\Sig}{\mathbf{\Sigma}}
+%\newcommand{\vo}{\mathbf{v}}
+%\newcommand{\ur}{\mathbf{u}}
+%\newcommand{\zl}{\mathbf{z}}
+%\newcommand{\Xp}{\mathcal{X}}
+%\newcommand{\Px}{\mathbf{P}}
+%\newcommand{\Ze}{\mathbf{0}}
+%\newcommand{\rob}{\mathcal{L}}
+%\newcommand{\deriv}[1]{\frac{\partial}{\partial #1}}
+
+%----review defs-------------------------------------------------
+%\usepackage{trackchanges}
+\usepackage[normalem]{ulem}
+
+\definecolor{myblack}{rgb}{0,0,0}
+\definecolor{mygrey}{rgb}{0.8,0.8,0.8}
+\definecolor{myred}{rgb}{1.0,0,0}
+\definecolor{mygreen}{rgb}{0,1.0,0}
+\definecolor{myblue}{rgb}{0,0,1.0}
+\definecolor{mywhite}{rgb}{1.0,1.0,1.0}
+
+\newcommand{\revadd}[1]{\textcolor{blue}{#1}}
+\newcommand{\revdel}[1]{\textcolor{red}{\sout{#1}}}
+\newcommand{\revcom}[1]{\textcolor{magenta}{(#1)}}
+\newcommand{\revcha}[2]{\revdel{#1}\revadd{#2}}
+
+%\newcommand{\revauthor}{GKK}
+%\newcommand{\revauthor}{NH}
+%\newcommand{\revauthor}{IA}
+%\newcommand{\revauthor}{RD}
+%\newcommand{\revauthor}{FH}
+%\newcommand{\revauthor}{SN}
+%\newcommand{\revauthor}{MM}
+%\newcommand{\revauthor}{PL}
+%\newcommand{\revauthor}{AA}
+%\newcommand{\revauthor}{DN}
+%\newcommand{\revauthor}{LI}
+\newcommand{\revauthor}{JBr}
+%\newcommand{\revauthor}{RB}
+
+%\newcommand{\revauthor}{BRSU} % blue
+%\newcommand{\revauthor}{POLI} % green
+%\newcommand{\revauthor}{IST}  % red
+%\newcommand{\revauthor}{ROMA} % magenta
+%\newcommand{\revauthor}{KUKA} % orange
+%\newcommand{\revauthor}{INNO} % yellow
+
+\newcommand{\revisor}[2]{%
+	\renewcommand{\revcolor}{#1}
+	\renewcommand{\revauthor}{#2}
+	}
+
+\newlength{\revcomwidth}
+\setlength{\revcomwidth}{\textwidth}
+\addtolength{\revcomwidth}{-20mm}
+
+\newcommand{\revcolor}{myblack}
+
+\newcommand{\revbox}{\textcolor{\revcolor}{$\Box$}\xspace}
+
+%\newcommand{\revdel}[1]{\textcolor{\revcolor}{\sout{#1}}}
+%\newcommand{\revadd}[1]{\textcolor{\revcolor}{#1}}
+\newcommand{\revmod}[2]{\textcolor{\revcolor}{\sout{#1} #2}}
+
+\newcommand{\revmar}{%
+	\marginpar{\textcolor{\revcolor}{\footnotesize \revauthor:}
+}}
+\newcommand{\revcommar}[1]{%
+	\marginpar{\textcolor{\revcolor}{\footnotesize \revauthor: #1}
+}}
+\newcommand{\revcomtext}[1]{%
+	\revbox \textcolor{\revcolor}{#1} \revbox\xspace
+}
+
+%\newcommand{\revcom}[1]{%
+%	\revbox \textcolor{\revcolor}{#1} \revbox\revcommar{ToDo}\xspace
+%}
+\newcommand{\revtodo}[1]{%
+	\todo[inline,color=\revcolor!33]{\revbox #1 \revbox}%
+}
+\newcommand{\revtodomar}[1]{%
+	\todo[inline,color=\revcolor!33]{\revbox #1 \revbox}%
+	\revcommar{}
+}
+\newcommand{\revTBC}{\revcomtext{To be confirmed.}}
+\newcommand{\revTBD}{\revcomtext{To be determined.}}
+\newcommand{\revNR}{\revcomtext{Not relevant.}}
+\newcommand{\revNA}{\revcomtext{Not applicable.}}
+\newcommand{\revTBCfill}{\hfill\revcomtext{To be confirmed.}}
+\newcommand{\revTBDfill}{\hfill\revcomtext{To be determined.}}
+\newcommand{\revNRfill}{\hfill\revcomtext{Not relevant.}}
+\newcommand{\revNAfill}{\hfill\revcomtext{Not applicable.}}
+
+%--------------------------------------------------------------------
+\newcommand{\mynote}[1]{{\colorbox{mygrey}{\textbf{#1}}}}
+	
+\newcommand{\myC}{\textsuperscript{\textcopyright}}
+\newcommand{\myR}{\textsuperscript{\textregistered}}
+\newcommand{\myTM}{\textsuperscript{\texttrademark}}
+	
+\newcommand{\mySetTheoremname}[1]{%
+	\renewcommand{\listtheoremname}{#1}
+	\addcontentsline{toc}{chapter}{#1}
+}
+	
+%--------------------------------------------------------------------
+%%% In the following line please replace 'IST_A_CMYK_POS.eps' by 
+%%% any of the following options to select the 
+%%% logo of the institution that will appear in
+%%% the title page
+%%% option 1: IST_A_CMYK_POS.eps
+%%% option 2: brsu_logo.eps
+%%% option 3: Sapienza_Universit_di_Roma.eps
+%%% option 4: Politecnico_di_Milano.eps
+%%% option 5: top_kuka.png
+%%% option 6: innoentivelogo.pdf
+\newcommand{\partnerNameForLogo}{consortiumLogo.eps}
+
+%%% In the following line please remove the expression 
+%%% ``The Document Title Goes Here'' by the 
+%%% document or report title you want to have
+\newcommand{\documentTitle}{Competition Design, Rule Book, \\
+	and Scenario Construction for \roaw\\}
+
+%%% In the following line please remove the expression 
+%%% ``The name(s) of the author(s) go here'' by the  
+%%% author(s) name(s).
+\newcommand{\documentAuthors}{%
+Coordinating Editors:\\  
+Tim Friedrich, Rhama Dwiputra, Gerhard Kraetzschmar\\
+Contributing Authors:\\ 
+Rainer Bischoff,\\ Andrea Bonarini, Rhama Dwiputra, 
+Frederik Hegger, Nico Hochgeschwender, \\ Luca Iocchi, 
+Gerhard Kraetzschmar,
+Pedro Lima, Matteo Matteucci, Daniele Nardi,\\ Viola Schaffionati and Sven Schneider\\
+}
+
+%%% In the following line please remove the expression 
+%%% ``Put name of lead contractor here' by the  
+%%% Lead contractor's name.
+\newcommand{\leadContractor}{KUKA Roboter GmbH}
+
+%%% In the following line please remove the expression 
+%%% ``Put revision number here' by the  
+%%% revision number.
+\newcommand{\revisionNumber}{1.1}
+\newcommand{\revisionNumberNutshell}{1.1}
+\newcommand{\revisionNumberRuleBook}{1.1}
+
+%%% Please DO NOT MODIFY the following 6 lines below
+\IfStrEq{\partnerNameForLogo}{IST_A_CMYK_POS.eps}%
+{\newcommand{\institutionLogoHeight}{1.8cm}}{}
+\IfStrEq{\partnerNameForLogo}{brsu_logo.eps}%
+{\newcommand{\institutionLogoHeight}{1.1cm}}{}
+\IfStrEq{\partnerNameForLogo}{Sapienza_Universit_di_Roma.eps}%
+{\newcommand{\institutionLogoHeight}{1.8cm}}{}
+\IfStrEq{\partnerNameForLogo}{Politecnico_di_Milano.eps}%
+{\newcommand{\institutionLogoHeight}{1.9cm}}{}
+\IfStrEq{\partnerNameForLogo}{top_kuka.png}%
+{\newcommand{\institutionLogoHeight}{0.75cm}}{}
+\IfStrEq{\partnerNameForLogo}{consortiumLogo.eps}%
+{\newcommand{\institutionLogoHeight}{3cm}}{}
+
+%--------------------------------------------------------------------
+%%% Number of section layers to show in TOC (i.e. section, subsection, subsubsection)
+\setcounter{tocdepth}{3} 
+
+%%% Number of subsection layers to allow in document
+%\setcounter{secnumdepth}{5} 
+\setcounter{secnumdepth}{3} 
+
+
+%--------------------------------------------------------------------
+% EOF
+%--------------------------------------------------------------------

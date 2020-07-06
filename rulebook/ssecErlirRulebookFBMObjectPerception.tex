@@ -1,0 +1,138 @@
+%!TEX root = ./ERL Industrial Robots.tex
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\subsection{Object Perception Functionality}
+\label{ssec:ObjectPerception}
+
+%--------------------------------------------------------------------
+\subsubsection{Functionality Description}
+\label{sssec:ObjectPerceptionDescription}
+
+This functionality benchmark evaluates the capabilities of a robot to extract information about observed objects. Objects presented to the robot in this functionality benchmark are based on the the \erlir factory scenario.
+Teams are provided with a list of objects (object instances), subdivided into classes (see Section \ref{sssec:ObjectPerceptionInput}). 
+In this benchmark, the robot is expected to detect and estimate the object's class and identity.
+Objects that are used here are described in Section~\ref{sec:TestBed}.
+
+%--------------------------------------------------------------------
+\subsubsection{Feature Variation}
+\label{sssec:ObjectPerceptionVariation}
+
+For this benchmark, the variation space for object features is represented by the (known) set of objects that the robot may be presented with.
+Variation space for object location is the surface of the benchmarking area where objects are located (see Section \ref{sssec:ObjectPerceptionInput}).
+
+%--------------------------------------------------------------------
+\subsubsection{Input Provided}
+\label{sssec:ObjectPerceptionInput}
+
+The set of individual objects that will actually be presented to the robot during the execution of the functionality benchmark is a subset of a larger set of available objects (``object instances'').
+Object instances are subdivided into classes of objects that have one or more properties in common (``object classes''). 
+Objects of the same class share one or more properties, not necessarily related to their geometry (for instance, a class may include objects that share their application domain). 
+Each object instance and each object class is assigned a unique ID.
+
+The team does not know which object instances will actually be presented to the robot during the benchmark. 
+However, the team will be provided with the following information:
+
+\begin{itemize}
+\item Descriptions/models of all the object instances in the form of 3D textured models;
+\item Subdivision of the object instances into object classes (for instance: profiles, screws, joints);
+\item Reference systems associated to the table surface and to each object instance (to be used to express object poses).
+\end{itemize}
+
+Object descriptions will be expressed according to widely accepted representations, well in advance of the competition. 
+
+%--------------------------------------------------------------------
+\subsubsection{Expected Robot Behavior or Output}
+\label{sssec:ObjectPerceptionOutput}
+
+The robot, for each object presented to it, must perform the following:
+
+\begin{itemize}
+\item Object detection: perception of the presence of an object on the table and association between the perceived object and one of the object classes (see Section \ref{sssec:ObjectPerceptionInput}).
+\item Object recognition: association between the perceived object and one of the object instances belonging to the selected class (see Section \ref{sssec:ObjectPerceptionInput}).
+
+\end{itemize}
+The following list of classes and instances of objects are going to be used in the object perception functionality benchmark:
+\begin{itemize}
+    \item Industrial
+
+    \item Chocolates
+
+    \item T-LESS
+
+\end{itemize}
+
+%--------------------------------------------------------------------
+\subsubsection{Procedures and Rules}
+\label{sssec:ObjectPerceptionProcedures}
+
+The maximum time allowed for one functionality run is 2 minutes. A run is defined as the detection, recognition and localization of one object.
+
+\begin{description}
+\item[Step 1] An object of unknown class and unknown instance will be placed in front of the robot
+\item[Step 2] The robot must determine the objects class, its instance within that class as well as the 3D pose of the object and save it in the given format (see Section~\ref{sssec:ObjectPerceptionData})
+\item[Step 3] The preceding steps are repeated until 10 runs have been completed.
+\end{description}
+
+%--------------------------------------------------------------------
+\subsubsection{Communication with CFH}
+\label{sssec:CommCFHObjectPerception}
+For this functionality benchmark the robot does not have to control any networked device in the environment. Only the communication as described below is necessary:
+
+\begin{description}
+\item[Step 1] The robot sends a \textbf{BeaconSignal} message at least every second.
+\item[Step 2] The robot waits for a \textbf{BenchmarkState} message. It starts the benchmark execution when the \emph{phase} field is equal to EXECUTION and the \emph{state} field is equal to RUNNING.
+\item[Step 3] As soon as the robot has finished perceiving the object, it sends a message of type \textbf{BenchmarkFeedback} to the CFH with the required results and the \emph{phase\_to\_terminate} field set to EXECUTION. The robot should do this until the \textbf{BenchmarkState}'s \emph{state} field has changed.
+\item[Step 4] The robot continues with Step 2.
+\item[Step 5] The functionality benchmark ends when the \textbf{BenchmarkState}'s \emph{state} field is equal to FINISHED.
+\end{description}
+\noindent
+The messages to be sent and to be received can be seen on the Github repository located at \cite{rockin:CFHMessages}.
+
+%--------------------------------------------------------------------
+\subsubsection{Acquisition of Benchmarking Data}
+\label{sssec:ObjectPerceptionData}
+
+General information on the acquisition of benchmarking data is described in Section \ref{sec:TbmAcquisitionOfData}. There, the \textbf{offline} part of the benchmarking data can be found.
+
+\paragraph{Online data}
+In order to send online benchmarking data to the CFH, the robot has to use the \textbf{BenchmarkFeedback} message. The message contains:
+
+\begin{itemize}
+	\item object\_class\_name (type: string)
+	\item object\_instance\_name (type: string))
+\end{itemize}
+
+The \textbf{BenchmarkFeedback} message can be found at \cite{rockin:CFHMessages}.
+
+\paragraph{Offline data} 
+The additional information described in the following table has to be logged:
+\begin{table}[h]
+	\centering
+	\begin{footnotesize}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Topic	&	Type		&	Frame Id		&	Notes \\ \hline\hline
+			/rockin/notification\tablefootnote{The string with the notification of the perceived object should be in a tab separated string: CLASS OBJECT\_ID X Y THETA} & std\_msgs/String & -- & -- \\ \hline
+		\end{tabular}
+	\end{footnotesize}
+\end{table}
+
+%--------------------------------------------------------------------
+\subsubsection{Scoring and Ranking}
+\label{sssec:ObjectPerceptionScoring}
+
+Evaluation of the performance of a robot according to this functionality benchmark is based on:
+%
+\begin{enumerate}
+\item The number and percentage of correctly identified objects class;
+\item The number and percentage of correctly identified objects object name;
+\item Execution time (if less than the maximum allowed for the benchmark).
+\end{enumerate}
+%
+The previous criteria are in order of importance; the first criterion is applied first and teams will be scored according to their accuracy, the ties are broken by using the second one still applying accuracy metrics, and in case of ties we will resort to execution time.
+
+
+%--------------------------------------------------------------------
+% EOF
+%--------------------------------------------------------------------

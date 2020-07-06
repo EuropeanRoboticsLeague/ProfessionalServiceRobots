@@ -1,0 +1,113 @@
+%!TEX root = ./ERL Industrial Robots.tex
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\subsection{Exploration Functionality (Shared with RoboCup@Work)}
+\label{ssec:Exploration}
+
+%--------------------------------------------------------------------
+% IST-ID
+\subsubsection{Functionality Description}
+\label{sssec:FooOMDescription}
+
+This benchmark evaluates the robot exploration and navigation capability.
+
+%--------------------------------------------------------------------
+% IST-ID
+\subsubsection{Feature Variation}
+\label{sssec:FooOMVariation}
+
+This benchmark has the following feature variation:
+\begin{itemize}
+  \item{Distinct starting points, waypoints, and goal positions.}
+  \item{Different number of waypoints to reach the goal.}
+  \item{Different number of obstacles blocking the path.}
+  \item{Different arena setup}
+\end{itemize}
+
+%--------------------------------------------------------------------
+% IST-ID
+\subsubsection{Input Provided}
+\label{sssec:FooOMInput}
+
+The robot will receive the following information:
+\begin{itemize}
+  \item{The starting position.}
+  \item{A single location the robot must visit.}
+  \item{The landmark for identifying the location the robot has to visit (QR code or color coding)}
+  %\item{The maximum time allowed for the robot to go from each waypoint to the next waypoint, without penalization.} 
+\end{itemize}
+
+%--------------------------------------------------------------------
+% IST-ID
+\subsubsection{Expected Robot Behavior or Output}
+\label{sssec:FooOMOutput}
+
+Teams are required to set their robot on a specific starting position (that will be given to the teams before each run). Then, the robot receives, through the CFH, the start signal, as well as a location name that it must reach. The robot must notify the CFH when it has reached the location. The evaluation of the navigation will take into account the following two points:
+\begin{itemize}
+  \item The time spent by the robot to locate the location. 
+  \item The number of times that the robot hits each obstacle. If the robot hits the same obstacle more than once, it will count as multiple hits.
+\end{itemize}
+
+The functionality benchmark ends as soon as one of the following situations occurs:
+\begin{itemize}
+  \item The robot reaches the specified location.
+  \item The time available for the functionality benchmark expires.
+  \item The robot damages any of the obstacles.
+  \item The robot pushes or continually touches an obstacle for more than 3 seconds.
+  \item The robot forces its path through an obstacle.
+\end{itemize}
+
+%--------------------------------------------------------------------
+% IST-ID
+\subsubsection{Procedures and Rules}
+\label{sssec:FooOMProcedures}
+All teams are required to perform this functionality benchmark according to the steps mentioned below. The task must be performed exclusively in autonomous mode. No teleoperation is allowed. Teams will have up to ten minutes to complete the functionality benchmark. Two minutes to move the robot to the correct starting position plus eight minutes to do the benchmarking.
+
+\begin{description}
+  \item [Step 1] The team is required to start their robot on a pre-defined starting position. This starting position will be given to the teams before each run.
+  \item [Step 2] When the procedure starts, the robot receives a the location it has to go.
+  \item [Step 3] Robot explores the arena and when it reaches the desired location sends back a signal to the CFH. The robot must avoid hitting any obstacle it encounters in its path.
+  \item [Step 3] The procedure stops when the robot notifies it has reached the goal position, when the time given to complete the test expires, or when the robot hard-hits an obstacle.
+\end{description}
+
+
+%The obstacles can be of three types: 
+%\begin{itemize}
+%  \item \textbf{Static and previously mapped}: Hardware already present in the house such as furniture, doors, walls, defined in \ref{sssec:NRObjects}. The teams should already have this obstacles mapped from set-up days. These items will not change during this functionality benchmark.
+%  \item \textbf{Static}: Items Granny Annie left lying on the ground. The obstacles may be of different shapes and sizes, are not previously known by the teams, and may be different in between runs.
+%  \item \textbf{Dynamic}: Granny Annie's visitors. People moving inside the house. Obviously, the movement people will do is unpredictable.
+%\end{itemize}
+
+
+
+%--------------------------------------------------------------------
+% POLIMI
+\subsubsection{Acquisition of Benchmarking Data}
+\label{sssec:FooOMData}
+This functionality benchmark will be fully automated (no human operation will be allowed) and, for that, the robot has to communicate with the CFH. It will receive the target location from the CFH and it must send back a signal, each time it reaches a waypoint.
+\begin{table}[h]
+\centering
+\begin{footnotesize}
+\begin{tabular}{|l|l|p{5cm}|}
+\hline
+ Topic	&	Type  	  &	Notes \\ \hline\hline
+ /roaw\_cfh/goal & geometry\_msgs/Pose2D & List of waypoints, sent by the CFH to the robot, when starting the task. \\ \hline
+ /roaw\_cfh/reached\_waypoint & roaw\_cfh\_comm\_ros/UInt8 & Message sent by the robot to the CFH, when reaching a point. It must include the number of the respective waypoint in the sequence (starting from zero). \\ \hline
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+
+%--------------------------------------------------------------------
+% IST-ID + ROME + POLIMI
+\subsubsection{Scoring and Ranking}
+\label{sssec:FooOMScoring}
+
+Evaluation of the performance of the robot(a.k.a scoring) in the benchmark is based on:
+\begin{enumerate}
+ \item Time taken by the robot to find the location.
+\end{enumerate}
+%--------------------------------------------------------------------
+% EOF
+%--------------------------------------------------------------------

@@ -1,0 +1,23 @@
+digraph {
+	label="RoCKIn@Home/Work - Referee Box states";
+	rankdir=TD
+	
+	node[shape="oval", style=""]
+		start[label="START"];
+		waiting_client[label="WAITING\nCLIENT"];
+		ready[label="READY"];
+		executing_manual[label="EXECUTING\nMANUAL OPERATION"];
+		executing_goal[label="EXECUTING\nGOAL"];
+		received_score[label="RECEIVED\nSCORE"];
+		end[label="END"];
+
+	start -> waiting_client[weight=10];
+	waiting_client -> ready[weight=10];
+	ready -> executing_manual[weight=10];
+	ready -> executing_goal;
+	ready -> received_score;
+	executing_manual -> executing_goal[weight=10];
+	executing_goal -> received_score[weight=10];
+	executing_goal -> ready;
+	received_score -> end[weight=10];
+}

@@ -1,0 +1,63 @@
+%!TEX root = ./ERL Industrial Robots.tex
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\subsection{Identifier}
+\label{ssec:Identifier}
+
+The identifier consists of the information about the object class, the object type and the unique identifier.
+Each information in the identifier is separated by a single dash.
+For example EM-01-01 means that the object is of class EM (objects in the environment to manipulate), it is of type 01
+(assembly aid tray) and it is the object ``01''.
+The identifier is used to monitor the production process and as a reference number to track customer specific assemblies.
+\erlir uses ArUco marker (size of approximately $2.5cm\times2.5cm$) as an identifier for areas and objects in its environment. 
+For example ArUco marker id ``1'' is mapped to EM-01-01 which is the identifier for one of the assembly aid trays available in the environment. 
+Table \ref{tab:ObjectID} and \ref{tab:AreaID} show the identifier of each object and area in the \erlir environment.
+
+\begin{longtable}{|l|l|l|}
+\caption{Objects ID}
+\label{tab:ObjectID}
+\\ \hline
+\textbf{Object} & \textbf{Object ID} & \textbf{Marker ID}\\ 
+  \hline 
+Assembly aid tray & EM-01-01 & 1 \\ \cline{2-3}
+& EM-01-02 & 2 \\ \cline{2-3}
+&  EM-01-02 & 3 \\ \hline 
+File card box & EM-02-01 & 21 \\ \cline{2-3}
+ & EM-02-02 & 22 \\ \cline{2-3}
+& EM-02-03 & 23 \\ \hline
+Container Box& ER-02-01 & 61 \\ \cline{2-3}
+(ER-02-01 -> ER-02-10) & ER-02-02 & 62 \\ \cline{2-3}
+& ER-02-03 & 63 \\ \cline{2-3}
+& ER-02-04 & 64 \\ \cline{2-3}
+& ... & ...  \\ \cline{2-3}
+& ER-02-08 & 68 \\ \cline{2-3}
+& ER-02-09 & 69 \\ \cline{2-3}
+& ER-02-10 & 70 \\ \hline 
+\end{longtable} 		
+
+\newpage
+
+\begin{longtable}{|l|l|l|}
+\caption{Area ID}
+\label{tab:AreaID}
+\\ \hline
+\textbf{Object} & \textbf{Object ID} & \textbf{Marker ID}\\ 
+  \hline 
+Shelves & SH-01 & 81 \\ \cline{2-3}
+(SH-01 -> SH-24) & SH-02 & 82 \\ \cline{2-3}
+& SH-03 & 83 \\ \cline{2-3}
+& ... & ... \\ \cline{2-3}
+& SH-22 & 102 \\ \cline{2-3}
+& SH-23 & 103 \\ \cline{2-3}
+& SH-24 & 104 \\ \hline
+Drilling workstation & WS-01 & 131 \\ \cline{2-3}
+& WS-02 & 132 \\ \hline
+Force fitting workstation & WS-03 & 133 \\ \cline{2-3}
+& WS-04 & 134 \\ \hline
+Assembly workstation & WS-05 & 135 \\ \cline{2-3}
+& WS-06 & 136 \\ \cline{2-3}
+& WS-07 & 137 \\ \hline
+Conveyor belt & CB-01 & 161 \\ \hline
+Drilling machine & DM-01 & 162 \\ \hline
+\end{longtable} 		

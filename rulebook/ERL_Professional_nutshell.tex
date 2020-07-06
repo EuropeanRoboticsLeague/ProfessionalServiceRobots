@@ -1,0 +1,25 @@
+%%% define document class with global options
+%\documentclass[11pt,a4paper,twoside]{article}
+\documentclass[12pt,a4paper,twoside]{article}
+
+%%% all inclusions of packages, macro definitions, and redefines
+%%% have been move to preamble.tex !!!
+\input{preamble}
+
+%#####################################################################
+\begin{document}
+\pagenumbering{roman}
+
+%--------------------------------------------------------------------
+\input{titlepageNutshell}
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+%--------------------------------------------------------------------
+\input{chapterErlirNutshell}
+
+
+%--------------------------------------------------------------------
+\end{document}
+%#####################################################################
